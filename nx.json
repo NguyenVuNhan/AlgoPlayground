@@ -12,9 +12,17 @@
   "npmScope": "algo-playground",
   "tasksRunnerOptions": {
     "default": {
-      "runner": "@nrwl/workspace/tasks-runners/default",
+      "runner": "@nrwl/nx-cloud",
       "options": {
-        "cacheableOperations": ["build", "lint", "test", "e2e"]
+        "cacheableOperations": [
+          "build",
+          "lint",
+          "test",
+          "e2e"
+        ],
+        "accessToken": "YjUzMWQ0ZjAtYTk0Ni00OTY5LWI1YzAtNTQxODEzYWJlODA4fHJlYWQtd3JpdGU=",
+        "canTrackAnalytics": false,
+        "showUsageWarnings": true
       }
     }
   },
@@ -24,7 +32,9 @@
     },
     "algo-playground-e2e": {
       "tags": [],
-      "implicitDependencies": ["algo-playground"]
+      "implicitDependencies": [
+        "algo-playground"
+      ]
     }
   }
 }
