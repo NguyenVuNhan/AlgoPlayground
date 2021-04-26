@@ -17,7 +17,8 @@
     "paths": {
       "@algo-playground/web/ui/components": [
         "libs/web/ui/components/src/index.ts"
-      ]
+      ],
+      "@algo-playground/web/ui/styles": ["libs/web/ui/components/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

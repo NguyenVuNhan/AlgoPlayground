@@ -51,6 +51,7 @@
     "@nrwl/web": "12.0.8",
     "@nrwl/workspace": "12.0.8",
     "@storybook/addon-knobs": "^6.1.11",
+    "@storybook/addon-postcss": "^2.0.0",
     "@storybook/react": "^6.1.11",
     "@svgr/webpack": "^5.4.0",
     "@testing-library/react": "11.2.6",

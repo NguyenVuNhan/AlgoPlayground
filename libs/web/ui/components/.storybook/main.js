@@ -1,5 +1,4 @@
 const rootMain = require('../../../../../.storybook/main');
-const path = require('path');
 
 // Use the following syntax to add addons!
 // rootMain.addons.push('');

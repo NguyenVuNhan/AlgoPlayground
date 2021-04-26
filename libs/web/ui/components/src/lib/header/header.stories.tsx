@@ -9,7 +9,7 @@ export default {
 
 export const primary = () => {
   const props: HeaderProps = {
-    title: text('title', 'Hello world'),
+    title: text('title', 'Algorithm playground'),
   };
 
   return <Header title={props.title} />;

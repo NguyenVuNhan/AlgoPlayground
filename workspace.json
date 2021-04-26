@@ -1,12 +1,23 @@
 {
   "version": 2,
-  "cli": { "defaultCollection": "@nrwl/react" },
+  "cli": {
+    "defaultCollection": "@nrwl/react"
+  },
   "defaultProject": "algo-playground",
   "generators": {
     "@nrwl/react": {
-      "application": { "style": "css", "linter": "eslint", "babel": true },
-      "component": { "style": "css" },
-      "library": { "style": "css", "linter": "eslint" }
+      "application": {
+        "style": "css",
+        "linter": "eslint",
+        "babel": true
+      },
+      "component": {
+        "style": "css"
+      },
+      "library": {
+        "style": "css",
+        "linter": "eslint"
+      }
     }
   },
   "projects": {
@@ -28,7 +39,7 @@
               "apps/algo-playground/src/favicon.ico",
               "apps/algo-playground/src/assets"
             ],
-            "styles": ["libs/web/ui/style/src/styles.css"],
+            "styles": ["libs/web/ui/styles/src/styles.css"],
             "scripts": [],
             "webpackConfig": "@nrwl/react/plugins/webpack"
           },
@@ -59,9 +70,13 @@
         },
         "serve": {
           "executor": "@nrwl/web:dev-server",
-          "options": { "buildTarget": "algo-playground:build" },
+          "options": {
+            "buildTarget": "algo-playground:build"
+          },
           "configurations": {
-            "production": { "buildTarget": "algo-playground:build:production" }
+            "production": {
+              "buildTarget": "algo-playground:build:production"
+            }
           }
         },
         "lint": {
@@ -76,14 +91,6 @@
           "options": {
             "jestConfig": "apps/algo-playground/jest.config.js",
             "passWithNoTests": true
-          }
-        },
-        "build-tailwind-css": {
-          "executor": "@nrwl/workspace:run-commands",
-          "outputs": [],
-          "options": {
-            "command": "npx tailwindcss-cli@latest build ./src/styles.css -o src/app/tailwind.css",
-            "cwd": "apps/algo-playground"
           }
         }
       }
@@ -137,11 +144,16 @@
           "executor": "@nrwl/storybook:storybook",
           "options": {
             "uiFramework": "@storybook/react",
-            "styles": ["apps/algo-playground/src/styles.css"],
             "port": 4400,
-            "config": { "configFolder": "libs/web/ui/components/.storybook" }
+            "config": {
+              "configFolder": "libs/web/ui/components/.storybook"
+            }
           },
-          "configurations": { "ci": { "quiet": true } }
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
+          }
         },
         "build-storybook": {
           "executor": "@nrwl/storybook:build",
@@ -149,9 +161,15 @@
           "options": {
             "uiFramework": "@storybook/react",
             "outputPath": "dist/storybook/web-ui-components",
-            "config": { "configFolder": "libs/web/ui/components/.storybook" }
+            "config": {
+              "configFolder": "libs/web/ui/components/.storybook"
+            }
           },
-          "configurations": { "ci": { "quiet": true } }
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
+          }
         }
       }
     },
@@ -168,7 +186,9 @@
             "devServerTarget": "web-ui-components:storybook"
           },
           "configurations": {
-            "ci": { "devServerTarget": "web-ui-components:storybook:ci" }
+            "ci": {
+              "devServerTarget": "web-ui-components:storybook:ci"
+            }
           }
         },
         "lint": {
@@ -179,14 +199,18 @@
         }
       }
     },
-    "web-ui-style": {
-      "root": "libs/web/ui/style",
-      "sourceRoot": "libs/web/ui/style/src",
+    "web-ui-styles": {
+      "root": "libs/web/ui/styles",
+      "sourceRoot": "libs/web/ui/styles/src",
       "projectType": "library",
       "targets": {
-        "lint": {
-          "executor": "@nrwl/linter:eslint",
-          "options": { "lintFilePatterns": ["libs/web/ui/style/**/*.ts"] }
+        "build-tailwind-css": {
+          "executor": "@nrwl/workspace:run-commands",
+          "outputs": [],
+          "options": {
+            "command": "npx tailwindcss-cli@latest build ./styles.css -o tailwind.css",
+            "cwd": "libs/web/ui/styles"
+          }
         }
       }
     }

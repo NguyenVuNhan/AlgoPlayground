@@ -8,9 +8,9 @@ export function Header(props: HeaderProps) {
   const { title } = props;
 
   return (
-    <div className="w-full bg-gray-600">
-      <h1>{title}</h1>
-    </div>
+    <header className="w-full bg-gray-700 px-3 py-2">
+      <p className="text-white text-2xl font-bold font-serif">{title}</p>
+    </header>
   );
 }
 

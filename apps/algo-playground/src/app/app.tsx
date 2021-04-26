@@ -33,7 +33,7 @@ export function App() {
         <ul className="resources">
           <li className="col-span-2">
             <a
-              className="resource flex"
+              className="flex resource"
               href="https://egghead.io/playlists/scale-react-development-with-nx-4038"
             >
               Scale React Development with Nx (Course)
@@ -41,14 +41,14 @@ export function App() {
           </li>
           <li className="col-span-2">
             <a
-              className="resource flex"
+              className="flex resource"
               href="https://nx.dev/latest/react/tutorial/01-create-application"
             >
               Interactive tutorial
             </a>
           </li>
           <li className="col-span-2">
-            <a className="resource flex" href="https://nx.app/">
+            <a className="flex resource" href="https://nx.app/">
               <svg
                 width="36"
                 height="36"
