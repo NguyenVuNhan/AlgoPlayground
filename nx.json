@@ -1,25 +1,15 @@
 {
   "implicitDependencies": {
-    "package.json": {
-      "dependencies": "*",
-      "devDependencies": "*"
-    },
+    "package.json": { "dependencies": "*", "devDependencies": "*" },
     ".eslintrc.json": "*"
   },
-  "affected": {
-    "defaultBase": "master"
-  },
+  "affected": { "defaultBase": "master" },
   "npmScope": "algo-playground",
   "tasksRunnerOptions": {
     "default": {
       "runner": "@nrwl/nx-cloud",
       "options": {
-        "cacheableOperations": [
-          "build",
-          "lint",
-          "test",
-          "e2e"
-        ],
+        "cacheableOperations": ["build", "lint", "test", "e2e"],
         "accessToken": "YjUzMWQ0ZjAtYTk0Ni00OTY5LWI1YzAtNTQxODEzYWJlODA4fHJlYWQtd3JpdGU=",
         "canTrackAnalytics": false,
         "showUsageWarnings": true
@@ -27,14 +17,16 @@
     }
   },
   "projects": {
-    "algo-playground": {
-      "tags": []
-    },
+    "algo-playground": { "tags": [] },
     "algo-playground-e2e": {
       "tags": [],
-      "implicitDependencies": [
-        "algo-playground"
-      ]
-    }
+      "implicitDependencies": ["algo-playground"]
+    },
+    "web-ui-components": { "tags": [] },
+    "web-ui-components-e2e": {
+      "tags": [],
+      "implicitDependencies": ["web-ui-components"]
+    },
+    "web-ui-style": { "tags": [] }
   }
 }

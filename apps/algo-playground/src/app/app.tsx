@@ -1,4 +1,5 @@
 import styles from './app.module.css';
+import { Header } from '@algo-playground/web/ui/components';
 
 import { ReactComponent as Logo } from './logo.svg';
 import star from './star.svg';
@@ -6,6 +7,7 @@ import star from './star.svg';
 export function App() {
   return (
     <div className={styles.app}>
+      <Header title="Hello" />
       <header className="flex">
         <Logo width="75" height="75" />
         <h1>Welcome to algo-playground!</h1>
