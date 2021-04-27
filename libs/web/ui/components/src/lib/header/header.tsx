@@ -1,15 +1,24 @@
 import React from 'react';
+import { MdMenu } from 'react-icons/md';
 
 export interface HeaderProps {
-  title: string;
+  onMenuClick?: () => void;
 }
 
 export function Header(props: HeaderProps) {
-  const { title } = props;
+  const { onMenuClick } = props;
 
   return (
-    <header className="w-full bg-gray-900 px-3 py-6">
-      <p className="text-white text-2xl font-bold font-serif">{title}</p>
+    <header className="w-full bg-gray-900 px-3 py-6 text-white flex aligns-center shadow-e3">
+      <button
+        className="btn icon-btn"
+        onClick={onMenuClick}
+        data-testid="menu-btn"
+      >
+        <MdMenu />
+      </button>
+
+      <p className="text-2xl font-bold font-serif">Algorithm Playground</p>
     </header>
   );
 }

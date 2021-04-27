@@ -1,8 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
 
 /* For base styles (check out normalize.css) */
-@tailwind base;
+@import 'tailwindcss/base';
+
 /* Simple reusable components provided by tailwind */
-@tailwind components;
+@import 'tailwindcss/components';
+@import './components/button.css';
+@import './components/menu.css';
+
 /* utility classes generated based on our tailwind.config.js */
-@tailwind utilities;
+@import 'tailwindcss/utilities';

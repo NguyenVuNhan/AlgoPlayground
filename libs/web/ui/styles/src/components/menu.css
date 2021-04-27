@@ -1,0 +1,13 @@
+@layer components {
+  .menu-item {
+    @apply w-full min-w-max flex items-center py-2 px-2 hover:bg-gray-100 hover:bg-opacity-10;
+  }
+
+  .menu-item > .icon-btn {
+    @apply mr-4;
+  }
+
+  .menu-item > p {
+    @apply text-lg;
+  }
+}

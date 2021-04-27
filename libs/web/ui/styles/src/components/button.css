@@ -1,0 +1,14 @@
+@layer components {
+  .btn {
+    @apply mx-2 shadow-sm focus:outline-none;
+  }
+
+  /* Icon button */
+  .icon-btn {
+    @apply flex items-center justify-center p-1 rounded-full;
+  }
+
+  .icon-btn svg {
+    @apply w-6 h-6 fill-current;
+  }
+}

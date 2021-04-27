@@ -7,21 +7,6 @@
 const path = require('path');
 
 module.exports = async ({ config, mode }) => {
-  // Make whatever fine-grained changes you need
-  // config.module.rules.push({
-  //   test: /\.css&/,
-  //   use: [
-  //     {
-  //       loader: 'postcss-loader',
-  //       options: {
-  //         ident: 'postcss',
-  //         plugins: [require('tailwindcss'), require('autoprefixer')],
-  //       },
-  //     },
-  //   ],
-  //   include: path.resolve(__dirname, '../'),
-  // });
-
   // Return the altered config
   return config;
 };

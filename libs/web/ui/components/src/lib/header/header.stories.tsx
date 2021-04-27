@@ -1,5 +1,5 @@
 import React from 'react';
-import { text } from '@storybook/addon-knobs';
+import { action } from '@storybook/addon-actions';
 import { Header, HeaderProps } from './header';
 
 export default {
@@ -9,8 +9,8 @@ export default {
 
 export const primary = () => {
   const props: HeaderProps = {
-    title: text('title', 'Algorithm playground'),
+    onMenuClick: action('Menu Click'),
   };
 
-  return <Header title={props.title} />;
+  return <Header onMenuClick={props.onMenuClick} />;
 };

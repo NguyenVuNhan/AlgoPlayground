@@ -1,23 +1,12 @@
 {
   "version": 2,
-  "cli": {
-    "defaultCollection": "@nrwl/react"
-  },
+  "cli": { "defaultCollection": "@nrwl/react" },
   "defaultProject": "algo-playground",
   "generators": {
     "@nrwl/react": {
-      "application": {
-        "style": "css",
-        "linter": "eslint",
-        "babel": true
-      },
-      "component": {
-        "style": "css"
-      },
-      "library": {
-        "style": "css",
-        "linter": "eslint"
-      }
+      "application": { "style": "css", "linter": "eslint", "babel": true },
+      "component": { "style": "css" },
+      "library": { "style": "css", "linter": "eslint" }
     }
   },
   "projects": {
@@ -70,13 +59,9 @@
         },
         "serve": {
           "executor": "@nrwl/web:dev-server",
-          "options": {
-            "buildTarget": "algo-playground:build"
-          },
+          "options": { "buildTarget": "algo-playground:build" },
           "configurations": {
-            "production": {
-              "buildTarget": "algo-playground:build:production"
-            }
+            "production": { "buildTarget": "algo-playground:build:production" }
           }
         },
         "lint": {
@@ -145,15 +130,9 @@
           "options": {
             "uiFramework": "@storybook/react",
             "port": 4400,
-            "config": {
-              "configFolder": "libs/web/ui/components/.storybook"
-            }
+            "config": { "configFolder": "libs/web/ui/components/.storybook" }
           },
-          "configurations": {
-            "ci": {
-              "quiet": true
-            }
-          }
+          "configurations": { "ci": { "quiet": true } }
         },
         "build-storybook": {
           "executor": "@nrwl/storybook:build",
@@ -161,41 +140,9 @@
           "options": {
             "uiFramework": "@storybook/react",
             "outputPath": "dist/storybook/web-ui-components",
-            "config": {
-              "configFolder": "libs/web/ui/components/.storybook"
-            }
+            "config": { "configFolder": "libs/web/ui/components/.storybook" }
           },
-          "configurations": {
-            "ci": {
-              "quiet": true
-            }
-          }
-        }
-      }
-    },
-    "web-ui-components-e2e": {
-      "root": "apps/web-ui-components-e2e",
-      "sourceRoot": "apps/web-ui-components-e2e/src",
-      "projectType": "application",
-      "targets": {
-        "e2e": {
-          "executor": "@nrwl/cypress:cypress",
-          "options": {
-            "cypressConfig": "apps/web-ui-components-e2e/cypress.json",
-            "tsConfig": "apps/web-ui-components-e2e/tsconfig.e2e.json",
-            "devServerTarget": "web-ui-components:storybook"
-          },
-          "configurations": {
-            "ci": {
-              "devServerTarget": "web-ui-components:storybook:ci"
-            }
-          }
-        },
-        "lint": {
-          "executor": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": ["apps/web-ui-components-e2e/**/*.{js,ts}"]
-          }
+          "configurations": { "ci": { "quiet": true } }
         }
       }
     },

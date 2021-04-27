@@ -1,14 +1,9 @@
 {
   "implicitDependencies": {
-    "package.json": {
-      "dependencies": "*",
-      "devDependencies": "*"
-    },
+    "package.json": { "dependencies": "*", "devDependencies": "*" },
     ".eslintrc.json": "*"
   },
-  "affected": {
-    "defaultBase": "master"
-  },
+  "affected": { "defaultBase": "master" },
   "npmScope": "algo-playground",
   "tasksRunnerOptions": {
     "default": {
@@ -22,22 +17,12 @@
     }
   },
   "projects": {
-    "algo-playground": {
-      "tags": []
-    },
+    "algo-playground": { "tags": [] },
     "algo-playground-e2e": {
       "tags": [],
       "implicitDependencies": ["algo-playground"]
     },
-    "web-ui-components": {
-      "tags": []
-    },
-    "web-ui-components-e2e": {
-      "tags": [],
-      "implicitDependencies": ["web-ui-components"]
-    },
-    "web-ui-styles": {
-      "tags": []
-    }
+    "web-ui-components": { "tags": [] },
+    "web-ui-styles": { "tags": [] }
   }
 }
