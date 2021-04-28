@@ -23,6 +23,7 @@
       "implicitDependencies": ["algo-playground"]
     },
     "web-ui-components": { "tags": [] },
-    "web-ui-styles": { "tags": [] }
+    "web-ui-styles": { "tags": [] },
+    "simulation-physics": { "tags": [] }
   }
 }

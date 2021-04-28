@@ -160,6 +160,27 @@
           }
         }
       }
+    },
+    "simulation-physics": {
+      "root": "libs/simulation/physics",
+      "sourceRoot": "libs/simulation/physics/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/simulation/physics/**/*.{ts,tsx,js,jsx}"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/simulation/physics"],
+          "options": {
+            "jestConfig": "libs/simulation/physics/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
     }
   }
 }

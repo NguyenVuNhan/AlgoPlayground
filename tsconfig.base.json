@@ -18,7 +18,10 @@
       "@algo-playground/web/ui/components": [
         "libs/web/ui/components/src/index.ts"
       ],
-      "@algo-playground/web/ui/styles": ["libs/web/ui/components/src/index.ts"]
+      "@algo-playground/web/ui/styles": ["libs/web/ui/components/src/index.ts"],
+      "@algo-playground/simulation/physics": [
+        "libs/simulation/physics/src/index.ts"
+      ]
     }
   },
   "exclude": ["node_modules", "tmp"]
