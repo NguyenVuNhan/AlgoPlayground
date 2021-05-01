@@ -1,8 +1,9 @@
 import React, { MouseEventHandler, useEffect, useState } from 'react';
 import './bouncing-ball.module.css';
 
+const resolveSteps = 5;
 // World settings
-const gravity = 1.5;
+const gravity = 1.5 / resolveSteps;
 const bounce = 0.7;
 const width = 1080;
 const height = 1080;
@@ -12,82 +13,108 @@ class Ball {
   radius: number;
   x: number;
   y: number;
+  px: number;
+  py: number;
   vy: number;
   vx: number;
   fill: string;
-  active: boolean;
+  mass: number;
 
-  constructor(x = Math.random() * width, y = (Math.random() * height) / 2) {
+  constructor({
+    x = Math.random() * width,
+    y = (Math.random() * height) / 2,
+  } = {}) {
     this.radius = 60;
     this.x = x;
     this.y = y;
-    this.vy = 1;
-    this.vx = 1;
+    this.vy = Math.random() * 10;
+    this.vx = Math.random() * 10;
+    // Save previous location
+    this.px = x - this.vx;
+    this.py = y - this.vy;
+    this.mass = 1;
     this.fill = randomColor();
-    this.active = true;
   }
 
   collision(balls: Ball[]) {
-    balls.forEach((ball) => {
-      if (this !== ball) {
-        const dx = this.x - ball.x;
-        const dy = this.y - ball.y;
-        const d = (dx ** 2 + dy ** 2) ** 0.5;
-        const rr = this.radius + ball.radius;
-
-        if (d < rr) {
-          const angle = Math.atan2(dy, dx);
-          const spread = rr - d;
-          const ax = spread * Math.cos(angle);
-          const ay = spread * Math.sin(angle);
-
-          this.x -= ax;
-          this.y -= ay;
-
-          this.vx *= -bounce;
-          this.vy *= -bounce;
-          ball.vx *= -bounce;
-          ball.vy *= -bounce;
+    let i = 0;
+    let { x, y, vx, vy, px, py } = this;
+    const { radius: r, mass: m } = this;
+    while (i < balls.length) {
+      const b = balls[i++];
+      if (this !== b) {
+        const rr = r + b.radius;
+        if (x + rr > b.x && x < b.x + rr && y + rr > b.y && y < b.y + rr) {
+          // Distance between 2 balls
+          const dx = x - b.x;
+          const dy = y - b.y;
+          const d = (dx * dx + dy * dy) ** 0.5;
+          // If collision
+          if (d < rr) {
+            const nx = (b.x - x) / d;
+            const ny = (b.y - y) / d;
+            const p =
+              (2 * ((vx - b.vx) * nx + (vy - b.vy) * ny)) / (m + b.mass);
+            const cpx = (x * b.radius + b.x * r) / rr;
+            const cpy = (y * b.radius + b.y * r) / rr;
+            x = cpx + (r * (x - b.x)) / d;
+            y = cpy + (r * (y - b.y)) / d;
+            b.x = cpx + (b.radius * (b.x - x)) / d;
+            b.y = cpy + (b.radius * (b.y - y)) / d;
+            px = x - (vx -= p * b.mass * nx);
+            py = y - (vy -= p * b.mass * ny);
+            b.px = b.x - (b.vx += p * m * nx);
+            b.py = b.y - (b.vy += p * m * ny);
+          }
         }
       }
-    });
+    }
+    this.x = x;
+    this.y = y;
+    this.px = px;
+    this.py = py;
+    this.vx = vx;
+    this.vy = vy;
+    this.checkWall();
   }
 
   checkWall() {
-    // Left boundary
-    const leftBorder = 0 + this.radius;
-    if (this.x < leftBorder) {
-      this.x += bounce * (leftBorder - this.x);
-      this.vx *= -bounce;
+    const top = this.radius;
+    const left = this.radius;
+    const bottom = height - this.radius;
+    const right = width - this.radius;
+    if (this.x > right) {
+      const away = (this.x - right) * bounce;
+      this.x = right - away;
+      this.vx = -Math.abs(this.vx) * bounce;
+      this.px = this.x - this.vx;
+    } else if (this.x < left) {
+      const away = (this.x - left) * bounce;
+      this.x = left + away;
+      this.vx = Math.abs(this.vx) * bounce;
+      this.px = this.x - this.vx;
     }
-
-    // Right boundary
-    const rightBorder = width - this.radius;
-    if (this.x > rightBorder) {
-      this.x -= bounce * (this.x - rightBorder);
-      this.vx *= -bounce;
-    }
-
-    // Bottom boundary
-    if (this.y + this.radius > height) {
-      this.y -= bounce * (this.y - (height - this.radius));
-      this.vy *= -bounce;
-
-      const h = this.y - (height - this.radius);
-      // Prevent ball from shaking when reach bottom
-      if (0 < h && h < gravity && Math.abs(this.vy) <= gravity) {
-        this.y = height - this.radius;
-        this.active = false;
-      }
+    if (this.y > bottom) {
+      const away = (this.y - bottom) * bounce;
+      this.y = bottom - away;
+      this.vy = -Math.abs(this.vy) * bounce;
+      this.py = this.y - this.vy;
+    } else if (this.y < top) {
+      const away = (this.y - top) * bounce;
+      this.y = top + away;
+      this.vy = Math.abs(this.vy) * bounce;
+      this.py = this.y - this.vy;
     }
   }
 
   move() {
-    if (!this.active) return;
-
+    this.vx = this.x - this.px;
+    this.vy = this.y - this.py;
     this.vy += gravity;
-    this.y += this.vy;
+    this.px = this.x;
+    this.py = this.y;
     this.x += this.vx;
+    this.y += this.vy;
 
     this.checkWall();
   }
@@ -136,15 +163,23 @@ export function BouncingBall(props: BouncingBallProps) {
     const rect = event.currentTarget.getBoundingClientRect(), // adjust mouse position
       x = ((event.clientX - rect.left) * height) / rect.height,
       y = ((event.clientY - rect.top) * width) / rect.width;
-    balls.push(new Ball(x, y));
+    balls.push(new Ball({ x, y }));
     setBalls([...balls]);
   };
 
   useInterval(() => {
-    let i = 0;
+    let i = 0,
+      j = resolveSteps;
+
     while (i < balls.length) {
       balls[i++].move();
-      // balls[i++].collision(balls);
+    }
+
+    while (j--) {
+      i = 0;
+      while (i < balls.length) {
+        balls[i++].collision(balls);
+      }
     }
 
     setBalls([...balls]);
