@@ -24,6 +24,8 @@
     },
     "web-ui-components": { "tags": [] },
     "web-ui-styles": { "tags": [] },
-    "simulation-physics": { "tags": [] }
+    "simulation-physics": { "tags": [] },
+    "shared-web-hooks": { "tags": [] },
+    "shared-utils": { "tags": [] }
   }
 }

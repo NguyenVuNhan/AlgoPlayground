@@ -21,7 +21,11 @@
       "@algo-playground/web/ui/styles": ["libs/web/ui/components/src/index.ts"],
       "@algo-playground/simulation/physics": [
         "libs/simulation/physics/src/index.ts"
-      ]
+      ],
+      "@algo-playground/shared/web/hooks": [
+        "libs/shared/web/hooks/src/index.ts"
+      ],
+      "@algo-playground/shared/utils": ["libs/shared/utils/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

@@ -1,0 +1,34 @@
+name: Testing
+
+on:
+  push:
+    branches: [master]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [14.x]
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: Fetch git history
+        run: git fetch origin master
+
+      - name: Install Yarn
+        run: npm install -g yarn
+
+      - name: Install Packages
+        run: yarn install
+
+      - name: Run Affected Test
+        shell: bash
+        run: yarn run affected --target=test --base=remotes/origin/master
